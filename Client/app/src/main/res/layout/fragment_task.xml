@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="24dp"
             android:layout_below="@+id/task_todo"
-            android:background="@color/blue_semi_transparent">
+            android:background="@color/yellow_transport">
 
             <TextView
                 android:layout_width="match_parent"
@@ -85,7 +85,8 @@
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            fab:fab_colorNormal="#99cc99"
+            fab:fab_colorNormal="@color/theme_color"
+            fab:fab_colorPressed="@color/theme_dark"
             fab:fab_plusIconColor="@color/white" />
     </RelativeLayout>
 </FrameLayout>

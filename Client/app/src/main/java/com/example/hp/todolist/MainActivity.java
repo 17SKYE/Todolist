@@ -1,8 +1,12 @@
 package com.example.hp.todolist;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,108 +20,58 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.githang.statusbar.StatusBarCompat;
 
 import java.util.Map;
 import java.util.Vector;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     MyDB myDB;
-    Toolbar toolbar;
     DrawerLayout mDrawerLayout;
     MySensor mySensor;
     TextView head_iv;
 
+    //17 add
+    //UI Object
+    private TextView txt_remind;
+    private TextView txt_calendar;
+    private TextView txt_timeBlock;
+    private TextView txt_setting;
+    private FrameLayout frame_content;
+    //Fragment Object
+    private  FragmentRemind fragmentRemind;
+    private MyFragment fg1,fg2,fg3,fg4;
+    private FragmentManager fragmentManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //调用父类方法
         super.onCreate(savedInstanceState);
+        //状态栏透明
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+        //加载布局文件
         setContentView(R.layout.activity_main);
 
-        /*// 初始化一个测试用数据库
-        myDB = new MyDB(this);
-        myDB.deleteAll();
-        myDB.insert("test0", "dscpt0", "2016年12月20日，11:00");
-        myDB.insert("test1", "dscpt1", "2016年12月4日，11:00");
-        myDB.insert("test2", "dscpt2", "2016年12月25日，11:00");
-        myDB.finishThis("test1");*/
+        //17 add
+        fragmentManager=getFragmentManager();
+        bindViews();
+        txt_remind.performClick();
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor("#f8bE12"));
 
-        toolbar = (Toolbar) findViewById(R.id.toolbarInMain);
-        setSupportActionBar(toolbar);
         myDB = new MyDB(this);
         mySensor = new MySensor(this);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.mainDrawerLayout);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
-                R.string.drawer_open, R.string.drawer_close);
-        mDrawerToggle.syncState();//初始化状态
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new taskFragment()).commit();
 
-        // 获取头部控件
-        // 点击之后跳转到登陆注册界面
-        View headview = mNavigationView.inflateHeaderView(R.layout.navigation_header);
-        head_iv = (TextView) headview.findViewById(R.id.id_username);
-        head_iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!head_iv.getText().toString().equals("guest")) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                    dialog.setTitle("注意!")
-                            .setMessage("当前用户为：" + head_iv.getText().toString() + ",是否需要重新登录或切换用户？")
-                            .setCancelable(false)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
-                                    startActivity(intent1);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            })
-                            .show();
-                }
-                else {
-                    Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent1);
-                }
-            }
-        });
-
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-//                    case R.id.login:
-//                        Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
-//                        startActivity(intent1);
-//                        break;
-                    case R.id.search:
-                        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(intent);
-//                        overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new searchFragment()).commit();
-//                        mToolbar.setVisibility(View.INVISIBLE);
-                        break;
-                    case R.id.collection:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new collectionFragment()).commit();
-                        toolbar.setTitle(R.string.collect_box);
-                        break;
-                    case R.id.today_task:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new taskFragment()).commit();
-                        toolbar.setTitle(R.string.today);
-                        break;
-                }
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                return true;
-            }
-        });
     }
 
     @Override
@@ -126,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         // 首先看看当前是不是用用户登录了
         SharedPreferences preferences = getSharedPreferences("UserNameData", MODE_PRIVATE);
         String id = preferences.getString("id", "guest");
-        head_iv.setText(id);
         mySensor.registerSensor();
         sendBroadcast(new Intent(NewAppWidget.ACTION_UPDATE_ALL));
     }
@@ -175,5 +128,90 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    //17 add
+    //UI组件初始化与事件绑定
+    private void bindViews(){
+        txt_remind=(TextView)findViewById(R.id.bar_remind);
+        txt_calendar=(TextView)findViewById(R.id.bar_calendrier);
+        txt_timeBlock=(TextView)findViewById(R.id.bar_timeBlock);
+        txt_setting=(TextView)findViewById(R.id.bar_setter);
+        frame_content=(FrameLayout)findViewById(R.id.frame_content);
+
+        txt_remind.setOnClickListener(this);
+        txt_calendar.setOnClickListener(this);
+        txt_timeBlock.setOnClickListener(this);
+        txt_setting.setOnClickListener(this);
+    }
+    //重置所有文本的选中状态
+    private void setSelected(){
+        txt_remind.setSelected(false);
+        txt_calendar.setSelected(false);
+        txt_timeBlock.setSelected(false);
+        txt_setting.setSelected(false);
+    }
+    //隐藏所有Fragment
+    private void hideAllFragment(FragmentTransaction fragmentTransaction){
+        if(fragmentRemind != null)fragmentTransaction.hide(fragmentRemind);
+        if(fg2 != null)fragmentTransaction.hide(fg2);
+        if(fg3 != null)fragmentTransaction.hide(fg3);
+        if(fg4 != null)fragmentTransaction.hide(fg4);
+    }
+    @Override
+    public void onClick(View v){
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        hideAllFragment(fragmentTransaction);
+        switch(v.getId()){
+            case R.id.bar_remind:
+                setSelected();
+                txt_remind.setSelected(true);
+                if(fragmentRemind==null)
+                {
+                    fragmentRemind= new FragmentRemind();
+                    fragmentTransaction.add(R.id.frame_content,fragmentRemind);
+                }
+                else{
+                    fragmentTransaction.show(fragmentRemind);
+                }
+                break;
+            case R.id.bar_calendrier:
+                setSelected();
+                txt_calendar.setSelected(true);
+                if(fg2==null)
+                {
+                    fg2= MyFragment.newInstance("第二个Fragment");
+                    fragmentTransaction.add(R.id.frame_content,fg2);
+                }
+                else{
+                    fragmentTransaction.show(fg2);
+                }
+                break;
+            case R.id.bar_timeBlock:
+                setSelected();
+                txt_timeBlock.setSelected(true);
+                if(fg3==null)
+                {
+                    fg3= MyFragment.newInstance("第三个Fragment");
+                    fragmentTransaction.add(R.id.frame_content,fg3);
+                }
+                else{
+                    fragmentTransaction.show(fg3);
+                }
+                break;
+            case R.id.bar_setter:
+                setSelected();
+                txt_setting.setSelected(true);
+                if(fg4==null)
+                {
+                    fg4= MyFragment.newInstance("第四个Fragment");
+                    fragmentTransaction.add(R.id.frame_content,fg4);
+                }
+                else{
+                    fragmentTransaction.show(fg4);
+                }
+                break;
+        }
+        fragmentTransaction.commit();
     }
 }

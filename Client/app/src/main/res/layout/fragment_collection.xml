@@ -83,7 +83,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            fab:fab_colorNormal="#99cc99"
+            fab:fab_colorNormal="@color/theme_color"
             fab:fab_plusIconColor="@color/white" />
     </RelativeLayout>
 </FrameLayout>

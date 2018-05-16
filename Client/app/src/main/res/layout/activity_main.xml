@@ -1,5 +1,4 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainDrawerLayout"
     android:layout_width="match_parent"
@@ -7,33 +6,90 @@
     android:fitsSystemWindows="true"
     android:background="@color/background_color"
     tools:context=".MainActivity">
-    <LinearLayout
+    <!--线性布局 -->
+    <!--android:orientation 为线性布局指明组件排列方向是垂直还是水平-->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarInMain"
+        android:orientation="vertical"
+        android:id="@+id/whole_page">
+        <!--标签栏-->
+        <LinearLayout
+            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/base_color"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/today" >
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@color/background_color">
 
-        </android.support.v7.widget.Toolbar>
-
+            <TextView
+                android:id="@+id/bar_remind"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bar_remind"
+                android:drawableTop="@drawable/tab_bar_remind"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:textColor="@drawable/tab_bar_text"
+                />
+            <TextView
+                android:id="@+id/bar_calendrier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bar_calendrier"
+                android:drawableTop="@drawable/tab_bar_calendrier"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:textColor="@drawable/tab_bar_text"
+                />
+            <TextView
+                android:id="@+id/bar_timeBlock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bar_timeblock"
+                android:drawableTop="@drawable/tab_bar_timeblock"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:textColor="@drawable/tab_bar_text"
+                />
+            <TextView
+                android:id="@+id/bar_setter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bar_setter"
+                android:drawableTop="@drawable/tab_bar_setter"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:textColor="@drawable/tab_bar_text"
+                />
+        </LinearLayout>
+        <View
+            android:id="@+id/div_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/background"
+            android:layout_above="@id/bottomBar"
+            />
         <!--内容显示布局-->
         <FrameLayout
             android:id="@+id/frame_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_above="@id/div_tab_bar"
+            />
+    </RelativeLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        app:menu="@menu/drawer" />
+
 </android.support.v4.widget.DrawerLayout>

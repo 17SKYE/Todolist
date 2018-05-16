@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.k0shk0sh:RetainedDateTimePickers:1.0.2'
+    compile 'com.githang:status-bar-compat:latest.integration'
     testCompile 'junit:junit:4.12'
 }

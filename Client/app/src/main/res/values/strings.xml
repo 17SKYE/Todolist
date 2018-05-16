@@ -36,4 +36,10 @@
     <string name="no_result">无搜索结果</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+
+    <!--add-->
+    <string name="bar_remind">提醒</string>
+    <string name="bar_calendrier">日历</string>
+    <string name="bar_timeblock">时间块</string>
+    <string name="bar_setter">设置</string>
 </resources>
