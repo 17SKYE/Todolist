@@ -1,5 +1,4 @@
 <resources>
-    <!--app中出现的所有文本-->
     <string name="app_name">TodoList</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
@@ -38,16 +37,16 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
 
-    <!--add-->
+    <!--17 add-->
     <string name="bar_remind">提醒</string>
     <string name="bar_calendrier">日历</string>
     <string name="bar_timeblock">时间块</string>
     <string name="bar_setter">设置</string>
-    <!--设置重复 -->
+    <string name="selectDate">5月18日</string>
+	<!--设置重复 -->
     <string name="btn_setRepeat">点此设置重复</string>
     <string name="btn_setPriority">点此设置优先级</string>
     <drawable name="btn_normal">#FFFAFA</drawable>
     <drawable name="btn_clicked">#D9D9D9</drawable>
-    <!---->
 
 </resources>

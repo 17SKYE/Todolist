@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText id;
     private EditText password;
     private Button loginBtn;
-    private Button registerBtn;
+    private TextView registerBtn;
     private Handler handler;
     private static final int FAILED = 111;
     private static final int SUCCEEDED = 222;
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         id = (EditText) findViewById(R.id.id);
         password = (EditText) findViewById(R.id.password);
         loginBtn = (Button) findViewById(R.id.loginBtn);
-        registerBtn = (Button) findViewById(R.id.registerBtn);
+        registerBtn = (TextView) findViewById(R.id.registerBtn);
         test = (TextView) findViewById(R.id.test);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {

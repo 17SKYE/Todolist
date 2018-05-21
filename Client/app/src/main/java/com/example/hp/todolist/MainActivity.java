@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FrameLayout frame_content;
     //Fragment Object
     private  FragmentRemind fragmentRemind;
-    private MyFragment fg1,fg2,fg3,fg4;
+    private FragmentCalendar fragmentCalendar;
+    private MyFragment fg3,fg4;
     private FragmentManager fragmentManager;
 
 
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //隐藏所有Fragment
     private void hideAllFragment(FragmentTransaction fragmentTransaction){
         if(fragmentRemind != null)fragmentTransaction.hide(fragmentRemind);
-        if(fg2 != null)fragmentTransaction.hide(fg2);
+        if(fragmentCalendar != null)fragmentTransaction.hide(fragmentCalendar);
         if(fg3 != null)fragmentTransaction.hide(fg3);
         if(fg4 != null)fragmentTransaction.hide(fg4);
     }
@@ -178,13 +179,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bar_calendrier:
                 setSelected();
                 txt_calendar.setSelected(true);
-                if(fg2==null)
+                if(fragmentCalendar==null)
                 {
-                    fg2= MyFragment.newInstance("第二个Fragment");
-                    fragmentTransaction.add(R.id.frame_content,fg2);
+                    fragmentCalendar= new FragmentCalendar();
+                    fragmentTransaction.add(R.id.frame_content,fragmentCalendar);
                 }
                 else{
-                    fragmentTransaction.show(fg2);
+                    fragmentTransaction.show(fragmentCalendar);
                 }
                 break;
             case R.id.bar_timeBlock:

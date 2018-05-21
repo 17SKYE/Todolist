@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:gravity="center_vertical"
+    android:background="@color/text_white"
     android:orientation="horizontal"
     android:paddingTop="5dp">
 
@@ -10,6 +11,7 @@
         android:id="@+id/finishCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:focusable="false" />
 
     <TextView
@@ -19,8 +21,9 @@
         android:layout_marginLeft="5dp"
         android:layout_weight="1"
         android:focusable="false"
+        android:text="任务"
         android:textColor="@color/black_semi_transparent"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/item_date"
@@ -29,6 +32,7 @@
         android:layout_marginLeft="5dp"
         android:focusable="false"
         android:textColor="@color/half_black"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        android:paddingRight="20dp"
         android:layout_marginRight="10dp"/>
 </LinearLayout>

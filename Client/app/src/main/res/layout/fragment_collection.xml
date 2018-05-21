@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="24dp"
             android:layout_below="@+id/collection_todo"
-            android:background="@color/blue_semi_transparent">
+            android:background="@color/yellow_transport">
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:layout_height="180dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:background="@mipmap/mo" />
+            android:background="@mipmap/hardwork3" />
 
         <LinearLayout
             android:id="@+id/noTaskText"
@@ -84,6 +84,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             fab:fab_colorNormal="@color/theme_color"
+            fab:fab_colorPressed="@color/theme_dark"
             fab:fab_plusIconColor="@color/white" />
     </RelativeLayout>
 </FrameLayout>

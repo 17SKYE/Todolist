@@ -21,111 +21,88 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="1">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/finishCBinDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal">
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:text="已完成"
+            android:textAlignment="textStart" />
+    </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/finishCBinDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@android:color/transparent"
-                android:text="已完成"
-                android:textAlignment="textStart" />
-        </LinearLayout>
+    <EditText
+        android:id="@+id/titleET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:hint="标题"
+        android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@android:color/darker_gray" />
 
-        <EditText
-            android:id="@+id/titleET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="10dp"
-            android:background="@null"
-            android:hint="标题"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/descriptionET"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="10dp"
-            android:background="@null"
-            android:gravity="start"
-            android:hint="描述" />
+    <EditText
+        android:id="@+id/descriptionET"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:gravity="start"
+        android:hint="描述" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/dateBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@drawable/details_button_selector"
-            android:drawableLeft="@drawable/ic_action_time"
-            android:gravity="center_vertical|left"
+            android:layout_margin="5dp"
+            android:background="#EDEDED"
             android:text="@string/no_date"
-            android:textColor="#AEAAA5"
-            android:textSize="18sp" />
-        <Button
-            android:id="@+id/repeatBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@drawable/details_button_selector"
-            android:drawableLeft="@drawable/ic_action_repeat"
-            android:gravity="center_vertical|left"
-            android:text="@string/btn_setRepeat"
-            android:textColor="#AEAAA5"
-            android:textSize="18sp" />
-        <Button
-            android:id="@+id/priorityBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:background="@drawable/details_button_selector"
-            android:drawableLeft="@drawable/ic_action_priority"
-            android:gravity="center_vertical|left"
-            android:text="@string/btn_setPriority"
-            android:textColor="#AEAAA5"
-            android:textSize="18sp" />
-        <!-- <ImageView
+            android:gravity="center"
+            android:textSize="18sp"/>
+
+        <ImageView
             android:id="@+id/relaxDay"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_gravity="center"
-            android:background="@mipmap/guest" />-->
+            android:background="@mipmap/guest" />
     </LinearLayout>
 </LinearLayout>

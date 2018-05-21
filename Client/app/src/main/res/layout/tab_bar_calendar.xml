@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CalendarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/background_color"
+    tools:context="com.example.hp.todolist.FragmentCalendar">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <!--顶部bar-->
+        <!--
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarInCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_color"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/selectDate" >
+
+        </android.support.v7.widget.Toolbar>-->
+
+        <!--顶部bar-->
+        <RelativeLayout
+            android:id="@+id/rl_tool"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/theme_color"
+            >
+
+            <TextView
+                android:id="@+id/tv_month_day"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:textColor="@color/text_white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/tv_month_day"
+                android:orientation="vertical"
+                android:paddingBottom="12dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="12dp"
+                tools:ignore="RelativeOverlap">
+
+                <TextView
+                    android:id="@+id/tv_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/text_white"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_lunar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/text_white"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_current"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_ripple">
+
+                <ImageView
+                    android:id="@+id/ib_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/menu_action_calendar_mvp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/text_white" />
+
+                <TextView
+                    android:id="@+id/tv_current_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="13"
+                    android:textColor="@color/text_white"
+                    android:textSize="12sp" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <!--内容显示布局-->
+
+        <com.haibin.calendarview.CalendarLayout
+            android:id="@+id/calendarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/text_white"
+            android:layout_below="@id/rl_tool"
+            app:default_status="shrink"
+            app:calendar_content_view_id="@+id/remindViewList"
+            >
+
+            <com.haibin.calendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shadow"
+                app:month_view="com.example.hp.todolist.calendar.IndexMonthView"
+                app:week_view="com.example.hp.todolist.calendar.IndexWeekView"
+                app:week_bar_view="com.example.hp.todolist.calendar.ChineseWeekBar"
+                app:current_month_text_color="@color/text_calendar_black"
+                app:current_month_lunar_text_color="#cfcfcf"
+                app:current_day_text_color="@color/theme_color"
+                app:current_day_lunar_text_color="@color/theme_color"
+                app:min_year="2010"
+                app:max_year="2020"
+                app:other_month_text_color="@color/text_calendar_gray"
+                app:scheme_text="假"
+                app:scheme_text_color="@color/text_calendar_black"
+                app:scheme_theme_color="@color/text_calendar_green"
+                app:selected_text_color="@color/text_white"
+                app:selected_lunar_text_color="@color/text_white"
+                app:selected_theme_color="@color/theme_color"
+                app:week_background="@color/text_white"
+                app:week_text_color="#111"
+                app:year_view_day_text_color="@color/text_calendar_black"
+                app:year_view_day_text_size="9sp"
+                app:year_view_month_text_color="@color/theme_color"
+                app:year_view_month_text_size="13sp"
+                app:month_view_show_mode="mode_only_current"
+                app:year_view_scheme_color="#f17706"
+
+                />
+
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/remindViewList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/content_background"
+                >
+
+                <FrameLayout
+                    android:id="@+id/the_day_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </android.support.v4.widget.NestedScrollView>
+        </com.haibin.calendarview.CalendarLayout>
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            fab:fab_colorNormal="@color/theme_color"
+            fab:fab_colorPressed="@color/theme_dark"
+            fab:fab_plusIconColor="@color/white" />
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

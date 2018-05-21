@@ -19,8 +19,16 @@
     <!--add-->
     <color name="theme_color">#f8bE12</color>
     <color name="theme_dark">#E0AC11</color>
+    <color name="theme_light">#FDE8AA</color>
     <color name="text_theme">#f9bf13</color>
     <color name="text_gray">#8a8a8a</color>
     <color name="text_white">#ffffff</color>
     <color name="yellow_transport">#fef5dd</color>
+    <color name="yellow_calendar">#fff6de</color>
+    <color name="text_calendar_black">#333333</color>
+    <color name="text_calendar_gray">#e1e1e1</color>
+    <color name="text_calendar_green">#128c4b</color>
+    <color name="text_calendar_blue">#108cd4</color>
+    <color name="content_background">#f2f2f1</color>
+    <color name="line_color">#e7e7e7</color>
 </resources>
