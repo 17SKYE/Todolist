@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -26,7 +25,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText id;
     private EditText password;
     private Button loginBtn;
-    private TextView backLogin;
     private EditText password2;
     private EditText username;
     private ProgressDialog progressDialog;
@@ -44,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         password2 = (EditText) findViewById(R.id.password2);
         username = (EditText) findViewById(R.id.username);
         loginBtn = (Button) findViewById(R.id.loginBtn);
-        backLogin=(TextView)findViewById(R.id.backLogin);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,15 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-        // 返回登录页面
-        backLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //跳转到登录Activity
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
         //Handle,Msg返回成功信息，跳转到其他Activity
         handler = new Handler() {
             public void handleMessage(Message msg) {

@@ -48,7 +48,7 @@
             android:layout_height="180dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:background="@mipmap/hardwork2" />
+            android:background="@mipmap/guest" />
 
         <LinearLayout
             android:id="@+id/noTaskText"

@@ -40,7 +40,7 @@ public class FragmentRemind extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_bar_remind, container, false);
 
-        toolbar = (Toolbar) view.findViewById(R.id.toolbarInRemind);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbarInMain);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 

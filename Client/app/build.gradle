@@ -30,13 +30,9 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    //时间控件
     compile 'com.github.k0shk0sh:RetainedDateTimePickers:1.0.2'
-    //状态栏
     compile 'com.githang:status-bar-compat:latest.integration'
-    //日历控件
-    compile 'com.haibin:calendarview:3.3.0'
-	//dialog控件
-	compile 'com.necer.ndialog2:ndialog:1.0.2'
+    compile 'com.necer.ndialog2:ndialog:1.0.2'
     testCompile 'junit:junit:4.12'
+
 }
