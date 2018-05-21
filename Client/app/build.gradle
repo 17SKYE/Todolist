@@ -32,5 +32,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.k0shk0sh:RetainedDateTimePickers:1.0.2'
     compile 'com.githang:status-bar-compat:latest.integration'
+    compile 'com.necer.ndialog2:ndialog:1.0.2'
     testCompile 'junit:junit:4.12'
+
 }

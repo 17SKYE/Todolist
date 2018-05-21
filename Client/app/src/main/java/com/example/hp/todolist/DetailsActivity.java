@@ -1,10 +1,13 @@
 package com.example.hp.todolist;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,14 +22,13 @@ import com.fastaccess.datetimepicker.DatePickerFragmentDialog;
 import com.fastaccess.datetimepicker.DateTimeBuilder;
 import com.fastaccess.datetimepicker.callback.DatePickerCallback;
 import com.fastaccess.datetimepicker.callback.TimePickerCallback;
+import com.necer.ndialog.NDialog;
 
 import java.util.Calendar;
 
 import static com.example.hp.todolist.SampleHelper.getDateAndTime;
-import static com.example.hp.todolist.SampleHelper.getTimeOnly;
-import static com.example.hp.todolist.SampleHelper.getDateOnly;
 
-public class DetailsActivity extends AppCompatActivity implements DatePickerCallback, TimePickerCallback{
+public class DetailsActivity extends AppCompatActivity implements DatePickerCallback, TimePickerCallback, View.OnClickListener {
     private MyDB myDB;
     private CheckBox finishCB;
     private Button dateBtn;
@@ -37,11 +39,25 @@ public class DetailsActivity extends AppCompatActivity implements DatePickerCall
     private String description;
     private String date;
 
+    //
+    private String repeat_type;
+    private String priority;
+
+    private Button repeatBtn,priorityBtn;
+    private String[] repeatList={"每天重复","每周重复","每月重复"};//重复方式列表
+    private String[] priorityList={"高优先级","中优先级","低优先级"};
+    //private TextView tv_repeatMenuContext;
+  //  tv_repeatMenuContext=(TextView) findViewById(R.id.tv_repeatMenuContext);
+   // registerForContextMenu(tv_repeatMenuContext);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        getId();//获取控件id
+        click();//将按钮绑定点击事件
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarInDetails);
         setSupportActionBar(toolbar);
@@ -52,6 +68,9 @@ public class DetailsActivity extends AppCompatActivity implements DatePickerCall
         dateBtn = (Button) findViewById(R.id.dateBtn);
         titleET = (EditText) findViewById(R.id.titleET);
         descriptionET = (EditText) findViewById(R.id.descriptionET);
+        //引入重复按钮
+        repeatBtn = (Button) findViewById(R.id.repeatBtn);
+        priorityBtn=(Button) findViewById(R.id.priorityBtn);
 
         myDB = new MyDB(this);
 
@@ -102,6 +121,22 @@ public class DetailsActivity extends AppCompatActivity implements DatePickerCall
 
 
         });
+
+
+
+
+
+    }
+
+    //获取控件id
+    private void getId() {
+        repeatBtn=(Button)findViewById(R.id.repeatBtn);
+        priorityBtn=(Button)findViewById(R.id.priorityBtn);
+    }
+    //将按钮绑定点击事件
+    private void click(){
+        repeatBtn.setOnClickListener(this);
+        priorityBtn.setOnClickListener(this);
     }
 
   //  @Override
@@ -116,6 +151,7 @@ public class DetailsActivity extends AppCompatActivity implements DatePickerCall
      *         full date with time
      */
 //    @Override
+    //选定日期后更改时间
     public void onTimeSet(long timeOnly, long dateWithTime) {
         dateBtn.setText(String.format("%s", getDateAndTime(dateWithTime)));
     }
@@ -138,6 +174,59 @@ public class DetailsActivity extends AppCompatActivity implements DatePickerCall
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.repeatBtn:
+                showRepeatDialog();//选择重复类型的对话框
+                break;
+            case R.id.priorityBtn:
+                showPriorityDialog();//选择优先级的对话框
+                break;
+        }
+    }
+    //重复类型选择对话框
+    private void showRepeatDialog(){
+        new NDialog(this)
+                .setItems(repeatList)
+                .setItemGravity(Gravity.LEFT)
+                .setItemColor(Color.parseColor("#AEAAA5"))
+                .setItemHeigh(50)
+                .setItemSize(16)
+                .setDividerHeigh(1)
+                .setAdapter(null)
+                .setDividerColor(Color.parseColor("#E5E5E5"))
+                .setHasDivider(true)
+                .setOnChoiceListener(new NDialog.OnChoiceListener() {
+                    @Override
+                    public void onClick(String item, int which) {
+                        Toast.makeText(DetailsActivity.this, "选择了：：" + item, Toast.LENGTH_SHORT).show();
+                        repeatBtn.setText(String.format("%s", item));
+                    }
+                }).create(NDialog.CHOICE).show();
+    }
+    //优先级选择对话框
+    private void showPriorityDialog(){
+
+        new NDialog(this)
+                .setItems(priorityList)
+                .setItemGravity(Gravity.LEFT)
+                .setItemColor(Color.parseColor("#AEAAA5"))
+                .setItemHeigh(50)
+                .setItemSize(16)
+                .setDividerHeigh(1)
+                .setAdapter(null)
+                .setDividerColor(Color.parseColor("#112321"))
+                .setHasDivider(true)
+                .setOnChoiceListener(new NDialog.OnChoiceListener() {
+                    @Override
+                    public void onClick(String item, int which) {
+                        Toast.makeText(DetailsActivity.this, "选择了：：" + item, Toast.LENGTH_SHORT).show();
+                        priorityBtn.setText(String.format("%s", item));
+                    }
+                }).create(NDialog.CHOICE).show();
+    }
+
     private class MyOnMenuItemClickListener implements Toolbar.OnMenuItemClickListener {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
@@ -146,6 +235,13 @@ public class DetailsActivity extends AppCompatActivity implements DatePickerCall
                     date = dateBtn.getText().toString();
                     newTitle = titleET.getText().toString();
                     description = descriptionET.getText().toString();
+                    //优先级和重复类型
+                    repeat_type=repeatBtn.getText().toString();
+                    priority=priorityBtn.getText().toString();
+                    if(priority.equals("高优先级")){
+
+                    }
+
                     if (newTitle.equals("")) {
                         Toast.makeText(DetailsActivity.this, R.string.empty_title, Toast.LENGTH_SHORT).show();
                     } else if (!originalTitle.equals(newTitle) && myDB.ifExists(newTitle)) {

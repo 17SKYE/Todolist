@@ -9,9 +9,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!--android:label :应用名称-->
+    <!--android:label :应用名称
+    android:icon 应用程序桌面图标-->
     <application android:allowBackup="true"
         android:label="@string/app_name"
+
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -35,11 +37,11 @@
 
         <!--17 add-->
         
-        <receiver android:name=".StaticReceiver">
+       <!-- <receiver android:name=".StaticReceiver">
             <intent-filter>
                 <action android:name="com.example.hp.staticreceiver" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <receiver android:name=".NewAppWidget">
             <!--意图过滤器-->

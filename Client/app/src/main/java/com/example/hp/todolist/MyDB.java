@@ -29,6 +29,7 @@ import static android.R.attr.version;
  * 4. 用之前先看一下我给每个函数的注释为好
  */
 
+//新加数据库值：priority优先级（1,2,3），repeat_type重复类型
 public class MyDB extends SQLiteOpenHelper {
     private static final String DB_NAME = "MyDB";
     private static final String TABLE_NAME = "TodoList";
@@ -36,11 +37,16 @@ public class MyDB extends SQLiteOpenHelper {
     public static final int ALL = 0;
     public static final int UNFINISHED = 1;
     public static final int FINISHED = 2;
+
+    //优先级设置 用INT 更好比较从而排序
+    //重复类型设置
+
     Context main;
 
     private final String CREATE_TABLE = "CREATE TABLE if not exists "
             + TABLE_NAME
-            + "(_id INTEGER PRIMARY KEY, title TEXT, description TEXT, date TEXT, finished TEXT)";
+            //增加了后两项
+            + "(_id INTEGER PRIMARY KEY, title TEXT, description TEXT, date TEXT, finished TEXT)";//, repeat_type TEXT, priority INT)";
 
 
     public MyDB(Context context) {
@@ -66,6 +72,8 @@ public class MyDB extends SQLiteOpenHelper {
         cv.put("description", description);
         cv.put("date", date);
         cv.put("finished", "false");
+        //优先级和重复
+      //  cv.put("repeat_type",);
         db.insert(TABLE_NAME, null, cv);
         db.close();
         Alarm.setAlarm(main);
